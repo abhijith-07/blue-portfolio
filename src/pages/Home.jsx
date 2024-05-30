@@ -75,18 +75,6 @@ const Container = styled.div`
     align-items: center;
     color: var(--font-white);
     padding-top: 8rem;
-
-    button.down-arrow {
-        display: block;
-        position: absolute;
-        top: 640px;
-        padding: 0.5em;
-        font-size: 2rem;
-        color: var(--font-white);
-        background-color: transparent;
-        border: 1px solid var(--primary);
-        border-radius: 0.5em;
-    }
 `
 
 const Profile = styled.div`
