@@ -43,8 +43,8 @@ function Home() {
                     </Introduction>
                     <Options>
                         <button className='resume'>Resume
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                <path stroke-linecap="round" strokeLinejoin="round" d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
                             </svg>
                         </button>
                         <SocialBtns>
@@ -75,6 +75,13 @@ const Container = styled.div`
     align-items: center;
     color: var(--font-white);
     padding-top: 8rem;
+
+    @media screen and (max-width: 768px){
+        display: block;
+        text-align: center;
+        position: absolute;
+        top: 300px;
+    }
 `
 
 const Profile = styled.div`
@@ -90,25 +97,56 @@ const Profile = styled.div`
         box-shadow: 0px 0px 20px var(--primary);
         background-color: #080c13;
     }
+
+    @media screen and (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        background-color: red;
+        img {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            top: -80px;
+        }
+    }
 `
 
 const Details = styled.div`
-    width: 900px;
+    width: 60vw;
+
+    @media screen and (max-width: 768px) {
+        width: 100vw;
+        line-height: 2em;
+    }
 `
 
-const Hello = styled.h1`
+const Hello = styled.h2`
     color: var(--primary);
     font-size: 4rem;
+
+    @media screen and (max-width: 768px) {
+        font-size: 2rem;
+    }
 `
 
 const Header = styled.h1`
     font-size: 4rem;
     line-height: 1.5em;
+
+    @media screen and (max-width: 768px) {
+        font-size: 2rem;
+        line-height: 2em;
+    }
 `
 
 const Description = styled.p`
     color: var(--light-gray);
     font-size: 1.15rem;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 1rem;
+    }
 `
 
 const Introduction = styled.div`
@@ -122,7 +160,6 @@ const Options = styled.div`
     margin-top: 5em;
 
     button.resume {
-        height: 3rem;
         padding: 0.5em;
         font-size: 1.25rem;
         color: var(--font-white);
@@ -145,6 +182,19 @@ const Options = styled.div`
     button.resume svg {
         width: 1.75rem;
     }
+    
+    @media screen and (max-width: 768px) {
+        margin-top: 1em;
+        justify-content: center;
+        
+        button.resume {
+            font-size: 1rem;
+        }
+        
+        button.resume svg {
+            width: 1.5rem;
+        }
+    }
 `
 
 const SocialBtns = styled.div`
@@ -163,6 +213,10 @@ const SocialBtns = styled.div`
 
     button.social-icon svg:hover {
         fill: var(--primary);
+    }
+    
+    @media screen and (max-width: 768px) {
+        display: none;
     }
 `
 
