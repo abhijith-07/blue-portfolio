@@ -91,10 +91,10 @@ const Container = styled.div`
 
 const Profile = styled.div`
     img {
-        width: 326px;
-        height: 326px;
+        width: 350px;
+        height: 350px;
         margin-top: -5rem;
-        border-radius: 10px 10px 90px;
+        border-radius: 50%;
         box-shadow: 0px 0px 15px var(--font-white);
     }
 
