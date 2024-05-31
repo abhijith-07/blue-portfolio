@@ -22,11 +22,20 @@ const NavBar = styled.div`
     align-items: center;
     height: 4rem;
     padding: 0 2em;
+
+    @media screen and (max-width: 480px) {   
+        height: 3rem;
+        padding: 0.5rem;
+    }
 `
 
 const Logo = styled.div`
     color: var(--primary);
     font-size: 2rem;
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.5rem;
+    }
 `
 
 const Options = styled.ul`
@@ -37,6 +46,10 @@ const Options = styled.ul`
     li {
         padding: 0.5em 1em;
         cursor: pointer;
+    }
+
+    @media screen and (max-width: 480px) {
+        display: none;
     }
 `
 

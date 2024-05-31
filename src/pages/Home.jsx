@@ -82,6 +82,10 @@ const Container = styled.div`
         position: absolute;
         top: 300px;
     }
+    
+    @media screen and (max-width: 480px){
+        top: 140px;
+    }
 `
 
 const Profile = styled.div`
@@ -110,6 +114,14 @@ const Profile = styled.div`
             top: -80px;
         }
     }
+
+    @media screen and (max-width: 480px) {
+        img {
+            width: 180px;
+            height: 180px;
+            top: 20px;
+        }
+    }
 `
 
 const Details = styled.div`
@@ -118,6 +130,10 @@ const Details = styled.div`
     @media screen and (max-width: 768px) {
         width: 100vw;
         line-height: 2em;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0 1.5rem;
     }
 `
 
@@ -128,6 +144,11 @@ const Hello = styled.h2`
     @media screen and (max-width: 768px) {
         font-size: 2rem;
     }
+
+    @media screen and (max-width: 480px) {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+    }
 `
 
 const Header = styled.h1`
@@ -137,6 +158,11 @@ const Header = styled.h1`
     @media screen and (max-width: 768px) {
         font-size: 2rem;
         line-height: 2em;
+    }
+    
+    @media screen and (max-width: 480px) {
+        font-size: 1.5rem;
+        line-height: 3em;
     }
 `
 
@@ -217,6 +243,18 @@ const SocialBtns = styled.div`
     
     @media screen and (max-width: 768px) {
         display: none;
+    }
+
+    @media screen and (max-width: 480px) {
+        position: absolute;
+        display: block;
+        top: 390px;
+        button.social-icon {
+            margin: 1em;
+        }
+        button.social-icon svg {
+            height: 1.75rem;
+        }
     }
 `
 
