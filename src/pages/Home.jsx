@@ -36,11 +36,11 @@ function Home() {
     return (
             <Container>
                 <Details>
-                    <Introduction>
+                    <div>
                         <Hello>Hello, I'm</Hello>
                         <Header>{header}</Header>
                         <Description>Self-Motivated | Dedicated Troubleshooter | Lifelong Learner </Description>
-                    </Introduction>
+                    </div>
                     <Options>
                         <button className='resume'>Resume
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
@@ -173,9 +173,6 @@ const Description = styled.p`
     @media screen and (max-width: 768px) {
         font-size: 1rem;
     }
-`
-
-const Introduction = styled.div`
 `
 
 const Options = styled.div`
