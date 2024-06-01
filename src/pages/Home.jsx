@@ -218,6 +218,14 @@ const Options = styled.div`
             width: 1.5rem;
         }
     }
+
+    @media screen and (max-width: 480px) {
+        display: block;
+
+        button.resume {
+            margin: 0 auto;
+        }
+    }
 `
 
 const SocialBtns = styled.div`
@@ -243,7 +251,6 @@ const SocialBtns = styled.div`
     }
 
     @media screen and (max-width: 480px) {
-        position: absolute;
         display: block;
         top: 390px;
         button.social-icon {
