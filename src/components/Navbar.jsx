@@ -4,6 +4,11 @@ function Navbar() {
     return(
         <NavBar>
             <Logo>Welcome!</Logo>
+            <MenuBar>
+                <div></div>
+                <div></div>
+                <div></div>
+            </MenuBar>
             <Options>
                 <li><i class="fa-solid fa-sun"></i></li>
                 <li><i class="fa-solid fa-moon"></i></li>
@@ -35,6 +40,20 @@ const Logo = styled.div`
 
     @media screen and (max-width: 480px) {
         font-size: 1.5rem;
+    }
+`
+
+const MenuBar = styled.div`
+    display: none;
+
+    @media screen and (max-width: 480px) {
+        display: block;
+        div {
+            width: 20px;
+            height: 3px;
+            margin: 5px;
+            background-color: var(--font-white);
+        }
     }
 `
 
