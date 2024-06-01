@@ -1,17 +1,26 @@
+import { useState } from 'react';
 import {styled} from 'styled-components';
 
 function Navbar() {
+    
+    const [menuView, setMenuView] = useState(false);
+
+    function toggleMenu() {
+        setMenuView(!menuView);
+        console.log(menuView)
+    }
+
     return(
         <NavBar>
             <Logo>Welcome!</Logo>
-            <MenuBar>
+            <MenuBar onClick={toggleMenu}>
                 <div></div>
                 <div></div>
                 <div></div>
             </MenuBar>
-            <Options>
-                <li><i class="fa-solid fa-sun"></i></li>
-                <li><i class="fa-solid fa-moon"></i></li>
+            <Options menuView={menuView} >
+                <li className='theme'><i className="fa-solid fa-sun"></i></li>
+                <li className='theme'><i className="fa-solid fa-moon"></i></li>
                 <li>About</li>
                 <li>Projects</li>
                 <li>Contact Me</li>
@@ -48,6 +57,7 @@ const MenuBar = styled.div`
 
     @media screen and (max-width: 480px) {
         display: block;
+        cursor: pointer;
         div {
             width: 20px;
             height: 3px;
@@ -68,7 +78,17 @@ const Options = styled.ul`
     }
 
     @media screen and (max-width: 480px) {
-        display: none;
+        display: ${ props => (props.menuView ? 'block' : 'none' ) };
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        z-index: 1;
+
+        li.theme {
+            display: none;
+        }
     }
 `
 
