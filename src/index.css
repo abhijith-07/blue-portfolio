@@ -10,10 +10,8 @@
 :root {
     --primary: #006FEE;
     --black: #141414;
-    --font-white: #fff;
+    --bg-white: #f0f1f3;
+    --font-light: #fff;
+    --font-dark: #080c13;
     --light-gray: #a1a1aa;
-}
-
-body {
-    background-color: var(--black);
 }
