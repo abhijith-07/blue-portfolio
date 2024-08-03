@@ -9,9 +9,12 @@
 
 :root {
     --primary: #006FEE;
-    --black: #141414;
+    --primary-dark: #0059be;
+    --bg-dark: #141414;
     --bg-light: #f0f1f3;
+    --bg-dark-transparent: #141414ca;
+    --bg-light-transparent: #f0f1f3dc;
     --font-light: #fff;
     --font-dark: #080c13;
-    --light-gray: #a1a1aa;
+    --light-gray: #a1a1aa; 
 }
