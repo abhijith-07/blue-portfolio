@@ -3,42 +3,53 @@ import {styled} from 'styled-components';
 import { ThemeContext } from '../contexts/themeContext';
 
 function Navbar() {
-    // const [menuView, setMenuView] = useState(false);
-    // function toggleMenu() {
-    //     setMenuView(!menuView);
-    // }
+    const [menuView, setMenuView] = useState(false);
+    
+    function toggleMenu() {
+        setMenuView(!menuView);
+    }
 
     // Theme switch
     const {darkTheme, setDarkTheme} = useContext(ThemeContext);
 
     function themeSwitch() {
         setDarkTheme(!darkTheme);
-        document.querySelector("body").style.backgroundColor = (darkTheme ? "var(--black)" : "var(--bg-white)")
     }
 
     useEffect(
         ()=>{
             themeSwitch
-            console.log("Value: ",darkTheme)
+            document.querySelector("body").style.backgroundColor = (darkTheme ? "var(--black)" : "var(--bg-white)")
         }, 
     [darkTheme])
 
     return(
         <NavBar>
             <Logo>Welcome!</Logo>
-            {/* <MenuBar onClick={toggleMenu}>
+            <MenuBar onClick={toggleMenu} menuview={menuView} darktheme={darkTheme}>
                 <div></div>
                 <div></div>
                 <div></div>
-            </MenuBar> */}
-            {/* <Options menuview={menuView} > */}
-            <Options darkTheme={darkTheme}>
+            </MenuBar>
+            <Options menuview={menuView} darktheme={darkTheme} >
+            {/* <Options darkTheme={darkTheme}> */}
                 <li className='theme' onClick={themeSwitch}>
-                    <i className={`fa-solid fa-${darkTheme ? "sun" : "moon"}`}></i>
+                    <i className={`fa-solid fa-${darkTheme ? "moon" : "sun" }`}></i>
                 </li>
-                <li>About</li>
-                <li>Projects</li>
-                <li>Contact Me</li>
+                {menuView && 
+                <li className='close-btn' onClick={toggleMenu}>
+                    <button>X</button>
+                </li>
+                }
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Projects</a>
+                </li>
+                <li>
+                    <a href="#">Contact Me</a>
+                </li>
             </Options>
         </NavBar>
     )
@@ -77,7 +88,7 @@ const MenuBar = styled.div`
             width: 20px;
             height: 3px;
             margin: 5px;
-            background-color: var(--font-light);
+            background-color: ${props => props.darktheme ? "var(--bg-light)" : "var(--black)"};
         }
     }
 `
@@ -85,7 +96,7 @@ const MenuBar = styled.div`
 const Options = styled.ul`
     display: flex;
     list-style: none;
-    color: ${props => props.darkTheme ? "var(--font-dark)" : "var(--font-light)"};
+    color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
     
     li {
         padding: 0.5em 1em;
@@ -93,17 +104,55 @@ const Options = styled.ul`
         font-size: 1.15rem;
     }
 
+    li a {
+        text-decoration: none;
+        color:  ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
+    }
+
+    li.close-btn {
+        display: none;
+    }
+
     @media screen and (max-width: 600px) {
         display: ${ ({ menuview }) => (menuview ? 'block' : 'none' ) };
         position: absolute;
         right: 0;
         top: 0;
-        width: 50%;
+        width: 40%;
         height: 100vh;
         z-index: 1;
+        background-color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
+
+        li {
+            width: 100%;
+            padding: 0;
+        }
 
         li.theme {
             display: none;
+        }
+        
+        li a{
+            color:  ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
+            display: block;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        li.close-btn {
+            display: block;
+            padding: 0.5rem;
+            text-align: right;
+        }
+
+        li.close-btn button {
+            background-color: transparent;
+            border: none;
+            color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
+            font-size: 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
         }
     }
 `

@@ -38,7 +38,6 @@ function Home() {
 
     useEffect(
         ()=>{
-            console.log("home:",darkTheme)
         }, [darkTheme]
     )
     return (

@@ -6,7 +6,7 @@ Container: styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${props => props.darkTheme ? "var(--font-dark)" : "var(--font-light)"};
+    color: ${props => props.darkTheme ? "var(--font-light)" : "var(--font-dark)"};
     padding-top: 8rem;
 
     @media screen and (max-width: 790px){
@@ -27,7 +27,7 @@ Profile: styled.div`
         height: 350px;
         margin-top: -5rem;
         border-radius: 50%;
-        box-shadow: 0px 0px 20px ${props => props.darkTheme ? "var(--font-dark)" : "var(--font-light)"};
+        box-shadow: 0px 0px 20px ${props => props.darkTheme ? "var(--font-light)" : "var(--font-dark)"};
     }
 
     img:hover {
@@ -132,11 +132,11 @@ Options: styled.div`
     button.resume {
         padding: 0.5em;
         font-size: 1.25rem;
-        color: ${props => props.darkTheme ? "var(--primary)" : "var(--font-light)"};
+        color: ${props => props.darkTheme ? "var(--font-light)" : "var(--primary)"};
         background-color: transparent;
         border-radius: 1.5em;
         border: none;
-        box-shadow: 0px 0px 5px ${props => props.darkTheme ? "var(--font-dark)" : "var(--primary)"};
+        box-shadow: 0px 0px 5px ${props => props.darkTheme ? "var(--primary)" : "var(--font-dark)"};
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -190,7 +190,7 @@ SocialBtns: styled.div`
     button.social-icon svg {
         height: 2.25rem;
         margin: 0.5em;
-        fill: ${props => props.darkTheme ? "var(--font-dark)" : "var(--font-light)"};
+        fill: ${props => props.darkTheme ? "var(--font-light)" : "var(--font-dark)"};
     }
 
     button.social-icon svg:hover {
