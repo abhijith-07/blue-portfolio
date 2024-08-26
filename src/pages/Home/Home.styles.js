@@ -2,18 +2,20 @@ import { styled } from 'styled-components';
 
 const styles = {
 
-Container: styled.div`
+Container: styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
     color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
-    padding-top: 8rem;
+    padding-top: 12rem;
 
     @media screen and (max-width: 790px){
         display: block;
         text-align: center;
-        position: absolute;
+        position: relative;
+        margin-top: 0;
         top: 300px;
+        height: 100vh;
     }
     
     @media screen and (max-width: 480px){
@@ -32,7 +34,7 @@ Profile: styled.div`
 
     img:hover {
         box-shadow: 0px 0px 20px var(--primary);
-        background-color: #080c13;
+        background-color: #080c1349;
     }
 
     @media screen and (max-width: 1000px) {
@@ -58,7 +60,7 @@ Profile: styled.div`
         img {
             width: 180px;
             height: 180px;
-            top: 20px;
+            top: 50px;
         }
     }
 `,
@@ -136,17 +138,42 @@ Options: styled.div`
         background-color: transparent;
         border-radius: 1.5em;
         border: none;
-        box-shadow: 0px 0px 5px ${props => props.darktheme ? "var(--primary)" : "var(--font-dark)"};
+        box-shadow: 0px 0px 10px ${props => props.darktheme ? "var(--primary-transparent)" : "var(--font-dark)"};
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
+        border: 3px solid transparent;
     }
 
     button.resume:hover {
-        color: var(--primary);
-        box-shadow: 0px 0px 10px var(--primary);
+        animation-name: shadowAnimation;
+        animation-duration: 2.5s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shadowAnimation {
+        0% {
+            border-top: 3px solid var(--primary);
+        }
+        25% {
+            border-top: 3px solid var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+        50% {
+            border-right: 3px solid var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        75% {
+            border-bottom: 3px solid var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+        100% {
+            border-left: 3px solid var(--primary);
+            border-top: 3px solid var(--primary);
+        }
     }
 
     button.resume svg {

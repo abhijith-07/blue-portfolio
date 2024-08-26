@@ -6,8 +6,12 @@ const styles = {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: fixed;
         height: 4rem;
+        width: 100vw;
         padding: 0 2em;
+        background-color: var(--bg-dark);
+        box-shadow: 0px 0px 10px ${props => props.darktheme ? "var(--primary-transparent)" : "var(--light-gray)"};
         
         @media screen and (max-width: 600px) {   
             height: 3rem;
@@ -17,7 +21,7 @@ const styles = {
 
     Logo: styled.div`
         color: var(--primary);
-        font-size: 2rem;
+        font-size: 1.75rem;
     
         @media screen and (max-width: 600px) {
             font-size: 1.5rem;
@@ -27,7 +31,7 @@ const styles = {
     MenuBar: styled.div`
         display: none;
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 680px) {
             display: ${(props) => (props.menuview ? 'none' : 'block')};
             cursor: pointer;
             div {
@@ -46,11 +50,11 @@ const styles = {
 
         li {
             padding: 0.5em 1em;
-            cursor: pointer;
             font-size: 1.15rem;
         }
     
         li a {
+            cursor: pointer;
             text-decoration: none;
             color:  ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
         }
@@ -59,7 +63,7 @@ const styles = {
             display: none;
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 680px) {
             display: ${(props) => (props.menuview ? 'block' : 'none')};
             position: absolute;
             right: 0;

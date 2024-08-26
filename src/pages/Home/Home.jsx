@@ -1,45 +1,51 @@
 import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../contexts/themeContext';
-import styles from './styles'
+import { ThemeContext } from '../../contexts/themeContext';
+import styles from './Home.styles';
 
 function Home() {
-    const headers = ["Abhijith Subash", "Full Stack Developer"]
-    const typingSpeed = 100, deletingSpeed = 50, delayBetweenTexts = 1500
+    // Display as a typing effect
+    const headers = ["Abhijith Subash", "Full Stack Developer"];
+    const typingSpeed = 100, deletingSpeed = 50, delayBetweenTexts = 1500;
+
+    // Keep track of the current header being typed
     const [currentHeaderIndex, setCurrentHeaderIndex] = useState(0);
+    // Manage the display of the current header text (including the cursor '|')
     const [header, setHeader] = useState('|');
+    // Determine whether we are in the deleting phase of the typing effect
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const {darkTheme} = useContext(ThemeContext);
+    // Accessing the theme context to apply the dark or light theme
+    const { darkTheme } = useContext(ThemeContext);
 
+    // Manage the typing and deleting effect
     useEffect(() => {
-        const handleTyping = () => {
-            const currentHeader = headers[currentHeaderIndex];
-            if (!isDeleting) {
-                // Typing effect
-                if (header.length < currentHeader.length + 1) {  // +1 to include the '|'
-                    setHeader(currentHeader.substring(0, header.length) + '|');
-                } else {
-                    // Wait before starting to delete
-                    setTimeout(() => setIsDeleting(true), delayBetweenTexts);
-                }
-            } else {
-                // Deleting effect
-                if (header.length > 1) {  // Ensure we don't remove the '|'
-                    setHeader(currentHeader.substring(0, header.length - 2) + '|');  // -2 to account for '|'
-                } else {
-                    setIsDeleting(false);
-                    setCurrentHeaderIndex((prevIndex) => (prevIndex + 1) % headers.length);
-                }
-            }
-        };
-        const typingSpeedInterval = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
-        return () => clearTimeout(typingSpeedInterval);
-    }, [header, isDeleting, headers, currentHeaderIndex, typingSpeed, deletingSpeed, delayBetweenTexts]);
+        const currentHeader = headers[currentHeaderIndex];
+        let timeout;
 
-    useEffect(
-        ()=>{
-        }, [darkTheme]
-    )
+        if (isDeleting) {
+            // Handle deleting characters
+            if (header.length > 1) {
+                timeout = setTimeout(() => {
+                    setHeader(currentHeader.substring(0, header.length - 2) + '|'); // -2 to account for '|'
+                }, deletingSpeed);
+            } else {
+                setIsDeleting(false);
+                setCurrentHeaderIndex((prevIndex) => (prevIndex + 1) % headers.length);
+            }
+        } else {
+            // Handle typing characters
+            if (header.length < currentHeader.length + 1) { // +1 to include the '|'
+                timeout = setTimeout(() => {
+                    setHeader(currentHeader.substring(0, header.length) + '|');
+                }, typingSpeed);
+            } else {
+                timeout = setTimeout(() => setIsDeleting(true), delayBetweenTexts);
+            }
+        }
+
+        return () => clearTimeout(timeout);
+    }, [header, isDeleting, headers, currentHeaderIndex]);
+
     return (
             <styles.Container darktheme={darkTheme}>
                 <styles.Details>

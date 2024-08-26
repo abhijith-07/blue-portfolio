@@ -24,7 +24,7 @@ function Navbar() {
     [darkTheme])
 
     return(
-        <styles.NavBar>
+        <styles.NavBar darktheme={darkTheme}>
             <styles.Logo>Welcome!</styles.Logo>
             <styles.MenuBar onClick={toggleMenu} menuview={menuView} darktheme={darkTheme}>
                 <div></div>
@@ -41,13 +41,16 @@ function Navbar() {
                 </li>
                 }
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="/about">About</a>
                 </li>
                 <li>
-                    <a href="#">Contact Me</a>
+                    <a href="/projects">Projects</a>
+                </li>
+                <li>
+                    <a href="/contactme">Contact Me</a>
                 </li>
             </styles.Options>
         </styles.NavBar>
