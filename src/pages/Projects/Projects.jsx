@@ -1,6 +1,6 @@
-function Projects() {
+function Projects({projectsRef, contactRef}) {
     return (
-        <section>
+        <section ref={projectsRef}>
             <h1>My Projects</h1>
             <div>
                 <div className="card-1">

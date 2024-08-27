@@ -7,6 +7,7 @@ const styles = {
         justify-content: space-between;
         align-items: center;
         position: fixed;
+        z-index: 2;
         height: 4rem;
         width: 100vw;
         padding: 0 2em;

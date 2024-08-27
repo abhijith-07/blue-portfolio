@@ -7,7 +7,8 @@ Container: styled.section`
     justify-content: center;
     align-items: center;
     color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
-    padding-top: 12rem;
+    padding-top: 14rem;
+    
 
     @media screen and (max-width: 790px){
         display: block;

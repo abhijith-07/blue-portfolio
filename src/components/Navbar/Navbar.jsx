@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { ThemeContext } from '../contexts/themeContext';
-import styles from './navstyles';
+import { ThemeContext } from '../../contexts/themeContext';
+import styles from './Navbar.styles';
 
 function Navbar() {
     const [menuView, setMenuView] = useState(false);

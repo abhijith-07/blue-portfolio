@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../contexts/themeContext';
+import DownArrow from '../../components/DownArrow/DownArrow';
 import styles from './Home.styles';
 
-function Home() {
+function Home({aboutRef}) {
     // Display as a typing effect
     const headers = ["Abhijith Subash", "Full Stack Developer"];
     const typingSpeed = 100, deletingSpeed = 50, delayBetweenTexts = 1500;
@@ -47,6 +48,7 @@ function Home() {
     }, [header, isDeleting, headers, currentHeaderIndex]);
 
     return (
+        <>
             <styles.Container darktheme={darkTheme}>
                 <styles.Details>
                     <div>
@@ -79,6 +81,8 @@ function Home() {
                     <img src="images/avatar.jpg" alt="" />
                 </styles.Profile>
             </styles.Container>
+            <DownArrow refElement={aboutRef} />
+        </>
         )
 }
 
