@@ -1,17 +1,34 @@
-import styled from "styled-components"
+import styled, {css} from "styled-components"
+
+const spanHeading = css`
+    .span-heading {
+        font-family: var(--font-decorative);
+        font-size: 1.5rem;
+        letter-spacing: 0.1em;
+    }
+`
 
 const styles = {
     Wrapper: styled.section`
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: calc(100vh - 10rem);
+        height: calc(100vh - 8rem);
         padding-top: 6rem;
         color: var(--font-light);
+        ${spanHeading}
     `,
     SkillContainer: styled.div`
+        height: 80%;
     `,
     Certificates: styled.div`
+        position: relative;
+        .certificate-heading {
+            display: flex;
+            position: absolute;
+            top: -3rem;
+            left: -1rem;
+        }
         img {
             width: 16rem;
             height: 10rem;
@@ -51,6 +68,22 @@ const styles = {
         }
     `,
     QualificationContainer: styled.div`
+        height: 80%;
+        position: relative;
+        .qualification-heading {
+            display: flex;
+            position: absolute;
+            top: -3rem;
+            left: -10rem;
+        }
+        .qualification-arrow {
+            display: inline;
+        }
+        .arrow {
+            stroke: var(--font-light);
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
         .qualifications {
             text-align: center;
             font-family: var(--font-secondary);

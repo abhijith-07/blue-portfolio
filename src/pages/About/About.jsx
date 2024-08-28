@@ -7,7 +7,9 @@ function About({aboutRef, projectsRef}) {
         <styles.Wrapper ref={aboutRef}>
             <styles.SkillContainer>
                 <styles.Certificates>
-                    <p className="certificate-heading">My certificates</p>
+                    <div className="span-heading certificate-heading">
+                        <span>My certificates</span>
+                    </div>
                     <div className="certificate-container">
                         <i className="left-arrow">&lt;</i>
                         <img src="images/certificates/git.jpg" alt="" className="certificate-image" />
@@ -27,7 +29,10 @@ function About({aboutRef, projectsRef}) {
                 <p className="me">Me</p>
             </styles.ImageContainer>
             <styles.QualificationContainer>
-                <p className="qualification-heading">My qualifications</p>
+                <div className="span-heading qualification-heading">
+                    <span>My qualifications</span>
+                    <img src="images/arrows/qualifications.svg" alt="" />
+                </div>
                 <div className="qualifications">
                     <div className="qualification qualification-1">
                         <div className="qualification-name">M.Sc. Computer Science</div>
@@ -41,7 +46,7 @@ function About({aboutRef, projectsRef}) {
                     </div>
                 </div>
                 <div className="interests">
-                    <p className="interest-heading">My interests</p>
+                    <p className="span-heading interest-heading">My interests</p>
                     <div className="interest interest-1">Playing Chess</div>
                 </div>
             </styles.QualificationContainer>
