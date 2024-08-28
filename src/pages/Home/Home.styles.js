@@ -81,7 +81,8 @@ Details: styled.div`
 
 Hello: styled.h2`
     color: ${ props => props.darktheme ? "var(--primary)" : "var(--primary-dark)"};
-    font-size: 4rem;
+    font-family: var(--font-secondary);
+    font-size: 3.5rem;
 
     @media screen and (max-width: 1100px) {
         font-size: 2.75rem;
@@ -99,6 +100,7 @@ Hello: styled.h2`
 
 Header: styled.h1`
     font-size: 4rem;
+    font-family: var(--font-secondary);
     line-height: 1.5em;
 
     @media screen and (max-width: 1100px) {

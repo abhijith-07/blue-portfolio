@@ -13,6 +13,8 @@ const styles = {
         padding: 0 2em;
         background-color: var(--bg-dark);
         box-shadow: 0px 0px 10px ${props => props.darktheme ? "var(--primary-transparent)" : "var(--light-gray)"};
+        font-family: var(--font-secondary);
+        text-transform: uppercase;
         
         @media screen and (max-width: 600px) {   
             height: 3rem;
@@ -50,7 +52,7 @@ const styles = {
         color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
 
         li {
-            padding: 0.5em 1em;
+            padding: 0.5em 0.75em;
             font-size: 1.15rem;
         }
     

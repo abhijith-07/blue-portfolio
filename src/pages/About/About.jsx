@@ -27,8 +27,8 @@ function About({aboutRef, projectsRef}) {
                 <p className="me">Me</p>
             </styles.ImageContainer>
             <styles.QualificationContainer>
+                <p className="qualification-heading">My qualifications</p>
                 <div className="qualifications">
-                    <p className="qualification-heading">My qualifications</p>
                     <div className="qualification qualification-1">
                         <div className="qualification-name">M.Sc. Computer Science</div>
                         <div className="qualification-institution">DCS, Kariavattom Campus</div>
