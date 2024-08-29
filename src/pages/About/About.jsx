@@ -2,6 +2,26 @@ import styles from "./About.styles";
 import DownArrow from '../../components/DownArrow/DownArrow';
 
 function About({aboutRef, projectsRef}) {
+    // <div className="qualification qualification-1">
+//     <div className="qualification-name"></div>
+//     <div className="qualification-institution"></div>
+//     <div className="qualification-year">2021-2023</div>
+// </div>
+    const skills = ['Python','JavaScript','C','Java']
+    const qualifications = [
+        {
+            name: "M.Sc. Computer Science",
+            institution: "DCS, Kariavattom Campus",
+            startYear: 2021,
+            endYear: 2023,
+        },
+        {
+            name: "B.Sc. Computer Science",
+            institution: "EMSCAS, Iritty",
+            startYear: 2018,
+            endYear: 2021,
+        },
+    ]
     return (
         <>
         <styles.Wrapper ref={aboutRef}>
@@ -9,6 +29,7 @@ function About({aboutRef, projectsRef}) {
                 <styles.Certificates>
                     <div className="span-heading certificate-heading">
                         <span>My certificates</span>
+                        <img src="images/arrows/certificates.svg" alt="" />
                     </div>
                     <div className="certificate-container">
                         <i className="left-arrow">&lt;</i>
@@ -16,13 +37,14 @@ function About({aboutRef, projectsRef}) {
                         <i className="right-arrow">&gt;</i>
                     </div>
                 </styles.Certificates>
-                <div className="skills">
-                    <div className="btn-tech-skills"></div>
-                    <div className="tech-skill skill-1"></div>
-                    <div className="tech-skill skill-2"></div>
-                    <div className="tech-skill skill-3"></div>
-                    <div className="tech-skill skill-4"></div>
-                </div>
+                <styles.SkillLists>
+                    <button>My TECH <span>Skills</span></button>
+                    <div className="tech-skill">
+                    {skills.map((skill, index) => (
+                        <div key={index} className={`skill-${index}`}>{skill}</div>
+                    ))}
+                    </div>
+                </styles.SkillLists>
             </styles.SkillContainer>
             <styles.ImageContainer>
                 <img src="/images/abhijith_image.jpg" alt="" />
@@ -34,16 +56,16 @@ function About({aboutRef, projectsRef}) {
                     <img src="images/arrows/qualifications.svg" alt="" />
                 </div>
                 <div className="qualifications">
-                    <div className="qualification qualification-1">
-                        <div className="qualification-name">M.Sc. Computer Science</div>
-                        <div className="qualification-institution">DCS, Kariavattom Campus</div>
-                        <div className="qualification-year">2021-2023</div>
-                    </div>
-                    <div className="qualification qualification-2">
-                        <div className="qualification-name">B.Sc. Computer Science</div>
-                        <div className="qualification-institution">EMSCAS, Iritty</div>
-                        <div className="qualification-year">2018-2021</div>
-                    </div>
+                    {
+                        qualifications.map((qualification, index) =>(
+                            <div className={`qualification qualification-${index}`} key={index}>
+                                <div className="qualification-name">{qualification.name}</div>
+                                <div className="qualification-institution">{qualification.institution}</div>
+                                <div className="qualification-year">{qualification.startYear}-{qualification.endYear}</div>
+                            </div>
+                        ))
+                    }
+                    
                 </div>
                 <div className="interests">
                     <p className="span-heading interest-heading">My interests</p>
