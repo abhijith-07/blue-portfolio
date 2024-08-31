@@ -5,13 +5,14 @@ const spanHeading = css`
         font-family: var(--font-decorative);
         font-size: 1.25rem;
         letter-spacing: 0.1em;
+        text-transform: capitalize;
     }
 `
 
 const styles = {
     Wrapper: styled.section`
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
         align-items: center;
         height: calc(100vh - 8rem);
         padding-top: 7rem;
@@ -64,60 +65,51 @@ const styles = {
             margin: 0 0.5em;
             background-color: var(--black);
             box-shadow: 0 0 10px var(--primary);
+            cursor: pointer;
+            user-select: none;
         }
     `,
 
     SkillLists : styled.div`
         position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: red;
         margin-top: 8rem;
-        button {
-            height: 7rem;
-            width: 7rem;
-            border-radius: 50%;
-            color: var(--font-light);
-            background-color: var(--black);
-            font-family: var(--font-secondary);
-            text-transform: uppercase;
-            border: none;
-            box-shadow: 0 0 25px var(--primary);
-        }
-        button span {
-            font-size: 1.75rem;
-        }
+        width: 80%;
 
-        button:hover {
-            transform: scale(0.6);
+        .tech-skills-heading {
+            text-decoration: underline;
         }
 
         .tech-skill {
-            position: absolute;
-            width: 20rem;
-            height: 20rem;
-            top: -7rem;
-            text-align: center;
-            opacity: 1;
-            background-color: #80808060;
+            margin-top: 1rem;
+            font-family: var(--font-secondary);
+            line-height: 2rem;
+            text-align: justify;
         }
 
         .tech-skill *[class^="skill-"] {
-            background-color: red;
-            padding: 1rem;
-            position: absolute;
-            left: 0;
-            transform-origin: 100px;
+            display: inline-block;
+            word-spacing: 0.5rem;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+            cursor: default;
         }
 
-        button:hover ~ .tech-skill {
-            opacity: 1;
+        .tech-skill *[class^="skill-"]::after {
+            content: " | ";
+        }
+
+        .tech-skill *[class^="skill-"]:last-child:after {
+            content: "";
+        }
+
+        .tech-skill *[class^="skill-"]:hover {
+            scale: 1.2;
         }
     `,
 
     ImageContainer: styled.div`
-        img {
+    padding-top: 3rem;
+        img.avatar {
             width: 18rem;
             height: 26rem;
             filter: blur(8px);
@@ -126,7 +118,7 @@ const styles = {
             transition: border-radius 0.5s ease, filter 0.75s ease;
         }
 
-        img:hover {
+        img.avatar:hover {
             border-radius: 0rem;
             filter: blur(0px);
             box-shadow: 0 0 20px var(--primary);
@@ -135,11 +127,15 @@ const styles = {
     QualificationContainer: styled.div`
         height: 80%;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         .qualification-heading {
             display: flex;
             position: absolute;
             top: -3rem;
-            left: -10rem;
+            left: -5rem;
         }
         .qualification-arrow {
             display: inline;
@@ -164,11 +160,38 @@ const styles = {
         .qualification-year {
             font-size: 1rem;
         }
+
+        .interests .interest-heading {
+            text-decoration: underline;
+        }
+
+        .interests-lists {
+            margin-top: 1rem;
+            font-family: var(--font-secondary);
+        }
+
+        .interests *[class^="interest-"] {
+            font-family: var(--font-secondary);
+            display: inline-block;
+            word-spacing: 0.5rem;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .interests *[class^="interest-"]:hover {
+            scale: 1.2;
+        }
+
+        .interests *[class^="interest-"]:after {
+            content: " | ";
+        }
+
+        .interests *[class^="interest-"]:last-child:after {
+            content: "";
+        }
     `,
 
-    ArrowContainer: styled.div`
-        background-color: red;
-    `
 }
 
 

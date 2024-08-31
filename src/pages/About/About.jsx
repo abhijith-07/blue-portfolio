@@ -1,13 +1,27 @@
 import styles from "./About.styles";
 import DownArrow from '../../components/DownArrow/DownArrow';
+import { useState } from "react";
 
 function About({aboutRef, projectsRef}) {
-    // <div className="qualification qualification-1">
-//     <div className="qualification-name"></div>
-//     <div className="qualification-institution"></div>
-//     <div className="qualification-year">2021-2023</div>
-// </div>
-    const skills = ['Python','JavaScript','C','Java']
+    const certificates = ['git.jpg','python.png']
+    const [currentCertificate, setCurrentCertificate] = useState(0)
+    function decreaseCertificate() {
+        if (currentCertificate > 0){
+            setCurrentCertificate(currentCertificate-1)
+        }
+        else {
+            setCurrentCertificate(certificates.length-1)
+        }
+    }
+    function increaseCertificate() {
+        if (currentCertificate < certificates.length-1){
+            setCurrentCertificate(currentCertificate+1)
+        }
+        else {
+            setCurrentCertificate(0)
+        }
+    }
+    const skills = ['Django', 'ReactJS', 'Python','JavaScript','C','Java', 'HTML', 'CSS', 'JQuery', 'SQL', 'MongoDB', 'Git', 'Docker']
     const qualifications = [
         {
             name: "M.Sc. Computer Science",
@@ -22,6 +36,7 @@ function About({aboutRef, projectsRef}) {
             endYear: 2021,
         },
     ]
+    const interests = ['Playing Chess', 'Drawing']
     return (
         <>
         <styles.Wrapper ref={aboutRef}>
@@ -32,23 +47,26 @@ function About({aboutRef, projectsRef}) {
                         <img src="images/arrows/certificates.svg" alt="" />
                     </div>
                     <div className="certificate-container">
-                        <i className="left-arrow">&lt;</i>
-                        <img src="images/certificates/git.jpg" alt="" className="certificate-image" />
-                        <i className="right-arrow">&gt;</i>
+                        <i className="left-arrow" onClick={decreaseCertificate}>&lt;</i>
+                        <img src={`images/certificates/${certificates[currentCertificate]}`} alt="" className="certificate-image" />
+                        <i className="right-arrow" onClick={increaseCertificate}>&gt;</i>
                     </div>
                 </styles.Certificates>
                 <styles.SkillLists>
-                    <button>My TECH <span>Skills</span></button>
+                    <span className="span-heading tech-skills-heading">My tech skills</span>
                     <div className="tech-skill">
                     {skills.map((skill, index) => (
-                        <div key={index} className={`skill-${index}`}>{skill}</div>
+                        <div key={index} className={`skill-${index}`}>&nbsp;{skill}</div>
                     ))}
                     </div>
                 </styles.SkillLists>
             </styles.SkillContainer>
             <styles.ImageContainer>
-                <img src="/images/abhijith_image.jpg" alt="" />
-                <p className="me">Me</p>
+                <img src="/images/abhijith_image.jpg" alt="" className="avatar" />
+                <div className="me">
+                    <span className="span-heading ">Me</span>
+                    <img src="images/arrows/me.svg" alt="" />
+                </div>
             </styles.ImageContainer>
             <styles.QualificationContainer>
                 <div className="span-heading qualification-heading">
@@ -69,7 +87,12 @@ function About({aboutRef, projectsRef}) {
                 </div>
                 <div className="interests">
                     <p className="span-heading interest-heading">My interests</p>
-                    <div className="interest interest-1">Playing Chess</div>
+                    <div className="interests-lists">
+                        {interests.map((interest, index) => (
+                            <div className={`interest-${index+1}`}>{interest}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </styles.QualificationContainer>
         </styles.Wrapper>
