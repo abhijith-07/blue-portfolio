@@ -89,7 +89,7 @@ function About({aboutRef, projectsRef}) {
                     <p className="span-heading interest-heading">My interests</p>
                     <div className="interests-lists">
                         {interests.map((interest, index) => (
-                            <div className={`interest-${index+1}`}>{interest}
+                            <div key={index} className={`interest-${index+1}`}>{interest}
                             </div>
                         ))}
                     </div>

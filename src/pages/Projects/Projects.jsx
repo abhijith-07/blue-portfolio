@@ -1,23 +1,30 @@
-function Projects({projectsRef, contactRef}) {
+import styles from "./Projects.styles"
+
+function Projects({ projectsRef, contactRef }) {
     return (
-        <section ref={projectsRef}>
-            <h1>My Projects</h1>
-            <div>
-                <div className="card-1">
-                    <img src="" alt="" />
-                    <div className="project-details">
-                        <div>
-                            <h2 className="project-name">Project 1</h2>
-                            <p className="description">#react #django</p>
-                        </div>
-                        <div>
-                            <button className="btn-code">Code icon</button>
-                            <button className="btn-live">Eye button</button>
-                        </div>
+        <styles.ProjectsContainer ref={projectsRef}>
+            <styles.PlayGround>
+                <img src="images/playground/flag.svg" alt="" className="flag" />
+                <img src="images/playground/car.svg" alt="" className="car" />
+                <div className="line"></div>
+            </styles.PlayGround>
+            <styles.ProjectCard>
+                <div className="section-main">
+                    <h2 className="project-name">Project 1</h2>
+                    <img src="images/projects/proj-1.png" alt="" className="img-card"/>
+                    <div className="proj-links">
+                        <a href="#" className="demo">Demo</a>
+                        <a href="#" className="code">Code</a>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div className="project-details">
+                    <p className="description">
+                    A static clone of the famous e-commerce brand. With good attention to detail I tried to include even the minute details in this project from the original website using simple HTML and CSS.
+                    </p>
+                    <p className="proj-techs">#react #django</p>
+                </div>
+            </styles.ProjectCard>
+        </styles.ProjectsContainer>
     )
 }
 
