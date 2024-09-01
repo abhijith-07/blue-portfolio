@@ -46,11 +46,52 @@ const styles = {
         .section-main .img-card {
             width: 100%;
         }
+        
+        .proj-links {
+            text-align: end;
+        }
+
+        .proj-links a {
+            color: var(--primary);
+            padding: 0 0.5em;
+            font-size: 1.125rem;
+        }
 
         .project-details {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
+            position: relative;
+            text-align: justify;
+        }
+
+        .project-details .description {
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            line-height: 1.5em;
+        }
+
+        .project-details .proj-techs {
+            position: absolute;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            text-align: end;
+        }
+
+        .project-details .proj-techs div {
+            display: inline-block;
+            background-color: var(--primary);
+            padding: 0.25em 1em;
+            margin: 0 0.25em;
+            border-radius: 1rem;
+            cursor: default;
+            transition: all 0.3s ease;
+        }
+
+        .project-details .proj-techs div:hover {
+            background-color: var(--primary);
+            transform: scale(1.1);
         }
     `
 
