@@ -32,17 +32,13 @@ function Projects({ projectsRef, contactRef }) {
     const [activeProject, setActiveProject] = useState(0)
 
     function nextProject() {
-        console.log("next", activeProject)
         if (activeProject < projects.length-1){
-            console.log("next inside")
             setActiveProject((currentProject) => currentProject+1)
         }
     }
     
     function prevProject() {
-        console.log("prev")
         if (activeProject>0){
-            console.log(activeProject)
             setActiveProject((currentProject) => currentProject-1)
         }
     }
