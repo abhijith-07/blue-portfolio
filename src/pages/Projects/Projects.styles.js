@@ -10,6 +10,7 @@ const styles = {
     PlayGround: styled.div`
         position: relative;
         padding: 5rem 0;
+        user-select: none;
 
         .flag {    
             margin-left: 2rem;
@@ -23,11 +24,18 @@ const styles = {
         .car {
             position: absolute;
             right: 2rem;
+            top: 5rem;
+            display: inline-block;
+        }
+        .car div.arrow {
+            color: var(--font-light);
+            display: inline-block;
+            font-size: 2rem;
+            cursor: pointer;
         }
     `,
 
     ProjectCard: styled.div`
-        display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
         color: var(--font-light);
@@ -36,6 +44,7 @@ const styles = {
         margin: 0 auto;
         padding: 3rem;
         box-shadow: 0 0 50px var(--primary-transparent);
+        display: ${ ({isactive}) => (isactive ? "grid" : "none" )};
 
         .section-main{
             display: flex;
