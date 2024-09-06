@@ -3,7 +3,7 @@ import styled from "styled-components";
 const styles = {
 
     ProjectsContainer: styled.section`
-        height: calc(100vh);
+        height: 100vh;
         margin-top: -2rem;
     `,
 

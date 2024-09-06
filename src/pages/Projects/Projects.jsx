@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DownArrow from "../../components/DownArrow/DownArrow";
 import styles from "./Projects.styles"
 
 function Projects({ projectsRef, contactRef }) {
@@ -46,41 +47,44 @@ function Projects({ projectsRef, contactRef }) {
     useEffect(()=>{}, [activeProject])
 
     return (
-        <styles.ProjectsContainer ref={projectsRef}>
-            <styles.PlayGround>
-                <img src="images/playground/flag.svg" alt="" className="flag" />
-                <div className="car">
-                    <div className="arrow left-arrow" onClick={nextProject}>&larr;</div>
-                    <img src="images/playground/car.svg" alt=""/>
-                    <div className="arrow right-arrow" onClick={prevProject}>&rarr;</div>
-                </div>
-                <div className="line"></div>
-            </styles.PlayGround>
-            {
-            projects.map((project, index) =>(
-                <styles.ProjectCard  isactive={activeProject === index}>
-                    <div className="section-main">
-                        <h2 className="project-name">{project.title}</h2>
-                        <img src={`images/projects/${project.image}`} alt="" className="img-card"/>
-                        <div className="proj-links">
-                            <a href={project.demoLink} className="demo">Demo</a>
-                            <a href={project.codeLink} className="code">Code</a>
-                        </div>
+        <>
+            <styles.ProjectsContainer ref={projectsRef}>
+                <styles.PlayGround>
+                    <img src="images/playground/flag.svg" alt="" className="flag" />
+                    <div className="car">
+                        <div className="arrow left-arrow" onClick={nextProject}>&larr;</div>
+                        <img src="images/playground/car.svg" alt=""/>
+                        <div className="arrow right-arrow" onClick={prevProject}>&rarr;</div>
                     </div>
-                    <div className="project-details">
-                        <p className="description">
-                        {project.descritpion}
-                        </p>
-                        <div className="proj-techs">
-                            {project.techs.map((tech, index) => (
-                                <div className={`tech-${index+1}`} key={index}>#{tech}</div>
-                            ))}
+                    <div className="line"></div>
+                </styles.PlayGround>
+                {
+                projects.map((project, index) =>(
+                    <styles.ProjectCard  isactive={activeProject === index}>
+                        <div className="section-main">
+                            <h2 className="project-name">{project.title}</h2>
+                            <img src={`images/projects/${project.image}`} alt="" className="img-card"/>
+                            <div className="proj-links">
+                                <a href={project.demoLink} className="demo">Demo</a>
+                                <a href={project.codeLink} className="code">Code</a>
+                            </div>
                         </div>
-                    </div>
-                </styles.ProjectCard>
-            ))
-            }
-        </styles.ProjectsContainer>
+                        <div className="project-details">
+                            <p className="description">
+                            {project.descritpion}
+                            </p>
+                            <div className="proj-techs">
+                                {project.techs.map((tech, index) => (
+                                    <div className={`tech-${index+1}`} key={index}>#{tech}</div>
+                                ))}
+                            </div>
+                        </div>
+                    </styles.ProjectCard>
+                ))
+                }
+            </styles.ProjectsContainer>
+            <DownArrow refElement={contactRef} />
+        </>
     )
 }
 
