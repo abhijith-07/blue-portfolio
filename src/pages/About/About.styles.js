@@ -18,6 +18,12 @@ const styles = {
         padding-top: 7rem;
         color: var(--font-light);
         ${spanHeading}
+        width: 100%;
+        
+        @media screen and (max-width: 1250px) {
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+        }
     `,
     SkillContainer: styled.div`
         height: 100%;
@@ -25,14 +31,28 @@ const styles = {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        @media screen and (max-width: 1250px) {
+            display: block;
+            padding: 2rem;
+        }
     `,
     Certificates: styled.div`
         position: relative;
+        @media screen and (max-width: 1250px) {
+            padding-bottom: 2rem;
+        }
         .certificate-heading {
             position: absolute;
             top: -2rem;
             left: -3rem;
             transform: rotate(-25deg);
+            @media screen and (max-width: 1250px) {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: rotate(0deg);
+                text-decoration: underline;
+            }
         }
         .certificate-heading span {
             display: block;
@@ -44,16 +64,29 @@ const styles = {
             height: 3rem;
             left: 8.5rem;
             top: 1rem;
+            @media screen and (max-width: 1250px) {
+                display: none;
+            }
         }
         img {
             width: 15rem;
             height: 10rem;
+            @media screen and (max-width:850px) {
+                width: 13rem;
+                height: 8.7rem;
+            }
         }
 
         .certificate-container {
             display: flex;
             align-items: center;
             font-size: 2rem;
+            @media screen and (max-width: 1250px) {
+                justify-content: center;
+            }
+            @media screen and (max-width:850px) {
+                font-size: 1.75rem;
+            }
         }
 
         .certificate-container i {
@@ -67,6 +100,10 @@ const styles = {
             box-shadow: 0 0 10px var(--primary);
             cursor: pointer;
             user-select: none;
+            @media screen and (max-width:850px) {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
         }
     `,
 
@@ -74,6 +111,12 @@ const styles = {
         position: relative;
         margin-top: 8rem;
         width: 80%;
+        
+        @media screen and (max-width: 1250px) {
+            margin-top: 0;
+            width: 100%;
+            padding: 2rem 0;
+        }
 
         .tech-skills-heading {
             text-decoration: underline;
@@ -84,6 +127,10 @@ const styles = {
             font-family: var(--font-secondary);
             line-height: 2rem;
             text-align: justify;
+            
+            @media screen and (max-width: 1250px) {
+                text-align: center;
+            }
         }
 
         .tech-skill *[class^="skill-"] {
@@ -108,7 +155,11 @@ const styles = {
     `,
 
     ImageContainer: styled.div`
-    padding-top: 3rem;
+        padding-top: 3rem;
+        @media screen and (max-width: 1250px) {
+            display: none;
+        }
+
         img.avatar {
             width: 18rem;
             height: 26rem;
@@ -117,7 +168,6 @@ const styles = {
             object-fit: cover;
             transition: border-radius 0.5s ease, filter 0.75s ease;
         }
-
         img.avatar:hover {
             border-radius: 0rem;
             filter: blur(0px);
@@ -131,14 +181,29 @@ const styles = {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        @media screen and (max-width: 1250px) {
+            display: block;
+            height: auto;
+            padding: 2rem;
+        }
+
         .qualification-heading {
             display: flex;
             position: absolute;
             top: -3rem;
             left: -5rem;
+            @media screen and (max-width: 1250px) {
+                position: relative;
+                top: 0;
+                left: 0;
+                text-decoration: underline;
+            }
         }
         .qualification-arrow {
             display: inline;
+            @media screen and (max-width: 1250px) {
+                display: none;
+            }
         }
         .arrow {
             stroke: var(--font-light);
@@ -147,18 +212,33 @@ const styles = {
         }
         .qualifications {
             text-align: center;
-            font-family: var(--font-secondary);
+            font-family: var(--font-secondary);    
+            @media screen and (max-width: 1250px) {
+                padding-bottom: 2rem;
+            }
         }
         .qualification-name {
             font-size: 1.75rem;
             text-transform: uppercase;
             text-decoration: underline;
+            @media screen and (max-width: 1250px) {
+                font-size: 1.5rem;
+            }
+            @media screen and (max-width:850px) {
+                font-size: 1.15rem;
+            }
         }
         .qualification-institution {
             font-size: 1.25rem;
         }
         .qualification-year {
             font-size: 1rem;
+        }
+
+        .interests {
+            @media screen and (max-width: 1250px) {
+                padding: 2rem 0;
+            }
         }
 
         .interests .interest-heading {
@@ -168,6 +248,10 @@ const styles = {
         .interests-lists {
             margin-top: 1rem;
             font-family: var(--font-secondary);
+            
+            @media screen and (max-width: 1250px) {
+                text-align: center;
+            }
         }
 
         .interests *[class^="interest-"] {

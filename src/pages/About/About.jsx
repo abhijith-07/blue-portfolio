@@ -71,7 +71,7 @@ function About({aboutRef, projectsRef}) {
             <styles.QualificationContainer>
                 <div className="span-heading qualification-heading">
                     <span>My qualifications</span>
-                    <img src="images/arrows/qualifications.svg" alt="" />
+                    <div className="qualification-arrow"><img src="images/arrows/qualifications.svg" alt="" /></div>
                 </div>
                 <div className="qualifications">
                     {
