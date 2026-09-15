@@ -34,6 +34,12 @@
     --font-secondary: "Varela", sans-serif;
     --font-display: "Bebas Neue", sans-serif;
     --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+    /* Transition system */
+    --transition-duration: 200ms; /* fallback */
+    --transition-duration-ui: 220ms; /* UI controls (buttons, links) */
+    --transition-duration-text: 140ms; /* text and typographic changes */
+    --transition-ease: cubic-bezier(.2,.9,.2,1);
 }
 
 body {
@@ -96,4 +102,39 @@ textarea:focus-visible,
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* Ensure main site content sits above the animated canvas */
+.site-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Global smooth hover transitions for interactive elements and text
+   Applied broadly so components and styled-components inherit the timing
+   and easing. Respects prefers-reduced-motion above. */
+/* UI controls: buttons, links, inputs — slightly longer, tactile feeling */
+:where(a, button, [role="button"], .btn, .nav-item) {
+    transition-property: background-color, color, border-color, box-shadow, transform, opacity, fill, stroke;
+    transition-duration: var(--transition-duration-ui);
+    transition-timing-function: var(--transition-ease);
+}
+
+/* Text and typographic elements: faster, snappier */
+:where(h1, h2, h3, h4, h5, h6, p, .span-heading, .link) {
+    transition-property: color, opacity, text-shadow, letter-spacing;
+    transition-duration: var(--transition-duration-text);
+    transition-timing-function: var(--transition-ease);
+}
+
+/* Form controls and focusable inputs follow UI timing */
+:where(input, textarea, select) {
+    transition-property: box-shadow, border-color, background-color, color;
+    transition-duration: var(--transition-duration-ui);
+    transition-timing-function: var(--transition-ease);
+}
+
+/* Small additional smoothing hint for interactive transforms */
+:where(a:hover, button:hover, [role="button"]:hover, .btn:hover) {
+    will-change: transform, opacity;
 }

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhijith Subash - Avatar Logo Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0B0F14;
+            color: #F5F7FA;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #22D3EE;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .option h2 {
+            color: #22D3EE;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .option p {
+            color: #8B99A8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Logo styles */
+        .circular {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #22D3EE;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .circular img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hexagon {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border: 2px solid #22D3EE;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .hexagon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .badge {
+            position: relative;
+            width: 200px;
+            height: 230px;
+        }
+
+        .badge-circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 3px solid #22D3EE;
+            border-radius: 50%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .badge-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .badge-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #22D3EE 0%, #0E9CB3 100%);
+            color: #0B0F14;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .rings {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 3px solid #22D3EE;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 0 8px #0B0F14,
+                inset 0 0 0 11px #22D3EE,
+                0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .rings img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .favicon-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .favicon {
+            width: 64px;
+            height: 64px;
+            background: #131A22;
+            border-radius: 8px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favicon .circular {
+            width: 48px;
+            height: 48px;
+            border-width: 2px;
+        }
+
+        .favicon .hexagon {
+            width: 48px;
+            height: 48px;
+            border-width: 1.5px;
+        }
+
+        .favicon-label {
+            font-size: 11px;
+            color: #8B99A8;
+        }
+
+        .recommendation {
+            background: #131A22;
+            border-left: 3px solid #22D3EE;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 60px;
+        }
+
+        .recommendation h3 {
+            color: #22D3EE;
+            margin-bottom: 12px;
+        }
+
+        .recommendation p {
+            color: #F5F7FA;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .recommendation strong {
+            color: #22D3EE;
+        }
+
+        .code-block {
+            background: #0B0F14;
+            border: 1px solid #22D3EE;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #22D3EE;
+            overflow-x: auto;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 12px;
+        }
+
+        .step-num {
+            background: #22D3EE;
+            color: #0B0F14;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            color: #F5F7FA;
+            line-height: 1.6;
+        }
+
+        .step-content code {
+            background: #0B0F14;
+            color: #FFB020;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Avatar Logo Options</h1>
+
+        <div class="grid">
+            <!-- Option 1 -->
+            <div class="option">
+                <h2>Circular Avatar</h2>
+                <div class="circular">
+                    <img src="avatar-photo.webp" alt="Abhijith Subash">
+                </div>
+                <p>Clean and professional. Best for social media and general branding.</p>
+                <div class="favicon-row">
+                    <div class="favicon">
+                        <div class="circular">
+                            <img src="avatar-photo.webp" alt="AS">
+                        </div>
+                    </div>
+                    <div class="favicon-label">Favicon size<br>(48×48px)</div>
+                </div>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="option">
+                <h2>Hexagon Frame</h2>
+                <div class="hexagon">
+                    <img src="avatar-photo.webp" alt="Abhijith Subash">
+                </div>
+                <p>Tech-forward geometric shape. Aligns with your portfolio aesthetic.</p>
+                <div class="favicon-row">
+                    <div class="favicon">
+                        <div class="hexagon">
+                            <img src="avatar-photo.webp" alt="AS">
+                        </div>
+                    </div>
+                    <div class="favicon-label">Favicon size<br>(48×48px)</div>
+                </div>
+            </div>
+
+            <!-- Option 3 -->
+            <div class="option">
+                <h2>Badge with Name</h2>
+                <div class="badge">
+                    <div class="badge-circle">
+                        <img src="avatar-photo.webp" alt="Abhijith Subash">
+                    </div>
+                    <div class="badge-name">SUBASH</div>
+                </div>
+                <p>Complete branding with your name. Great for hosting sites and profiles.</p>
+            </div>
+
+            <!-- Option 4 -->
+            <div class="option">
+                <h2>Concentric Rings</h2>
+                <div class="rings">
+                    <img src="avatar-photo.webp" alt="Abhijith Subash">
+                </div>
+                <p>Elegant and framed. Professional, timeless design.</p>
+                <div class="favicon-row">
+                    <div class="favicon">
+                        <div class="rings">
+                            <img src="avatar-photo.webp" alt="AS">
+                        </div>
+                    </div>
+                    <div class="favicon-label">Favicon size<br>(48×48px)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h3>✓ Recommended: Circular Avatar</h3>
+            <p>The <strong>simple circular</strong> option is the most versatile. It works perfectly at any size, from favicon (16×16) to social media (400×400+). The cyan border ties directly to your portfolio's visual system.</p>
+
+            <h3 style="margin-top: 24px;">How to Use</h3>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <strong>Copy your photo to the portfolio:</strong><br>
+                        Place <code>avatar-photo.webp</code> in <code>public/</code> folder
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <strong>Update the navbar:</strong><br>
+                        Edit <code>src/components/Navbar/Navbar.jsx</code> and add:
+                        <div class="code-block">
+&lt;styles.Logo&gt;<br>
+&nbsp;&nbsp;&lt;img src="/avatar-photo.webp" alt="AS" 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style="width: 40px; height: 40px; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: 2px solid #22D3EE; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-radius: 50%; object-fit: cover;" /&gt;<br>
+&nbsp;&nbsp;Abhijith Subash<br>
+&lt;/styles.Logo&gt;
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <strong>Use as favicon:</strong><br>
+                        Replace <code>public/favicon.svg</code> with a 64×64 PNG version of the circular avatar
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <strong>Social media & hosting:</strong><br>
+                        Use the circular avatar for GitHub, LinkedIn, Vercel/Netlify profile pictures
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 13px; color: #8B99A8;">
+                💡 <strong>Tip:</strong> All these logos scale perfectly from favicon size up to large displays. The CSS automatically adapts—no separate versions needed.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
