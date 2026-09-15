@@ -97,3 +97,9 @@ textarea:focus-visible,
         scroll-behavior: auto !important;
     }
 }
+
+/* Ensure main site content sits above the animated canvas */
+.site-content {
+    position: relative;
+    z-index: 1;
+}
