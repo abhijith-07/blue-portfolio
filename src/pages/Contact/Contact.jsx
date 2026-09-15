@@ -15,10 +15,6 @@ function Contact({ contactRef }) {
     function handleSubmit(e) {
         e.preventDefault();
         setStatus('sending');
-        // Requires three Vite env vars set in .env (never hardcode these):
-        // VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY
-        // Sign up at emailjs.com, connect an email provider, and create a
-        // template with {{name}}, {{email}}, {{message}} fields.
         emailjs.send(
             import.meta.env.VITE_EMAILJS_SERVICE_ID,
             import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -42,15 +38,39 @@ function Contact({ contactRef }) {
                     <form onSubmit={handleSubmit}>
                         <div className="form-field">
                             <label htmlFor="name">Name:</label>
-                            <input type="text" name="name" id="name" required value={form.name} onChange={handleChange} />
+                            <input 
+                              type="text" 
+                              name="name" 
+                              id="name" 
+                              required 
+                              value={form.name} 
+                              onChange={handleChange}
+                              autoComplete="name"
+                            />
                         </div>
                         <div className="form-field">
                             <label htmlFor="email">Email:</label>
-                            <input type="email" name="email" id="email" required value={form.email} onChange={handleChange} />
+                            <input 
+                              type="email" 
+                              name="email" 
+                              id="email" 
+                              required 
+                              value={form.email} 
+                              onChange={handleChange}
+                              autoComplete="email"
+                            />
                         </div>
                         <div className="form-field">
                             <label htmlFor="message">Message:</label>
-                            <textarea name="message" id="message" rows={4} required value={form.message} onChange={handleChange}></textarea>
+                            <textarea 
+                              name="message" 
+                              id="message" 
+                              rows={4} 
+                              required 
+                              value={form.message} 
+                              onChange={handleChange}
+                              autoComplete="off"
+                            />
                         </div>
                         <button type="submit" disabled={status === 'sending'}>
                             {status === 'sending' ? 'Sending…' : 'Send Message'}

@@ -45,6 +45,7 @@
 body {
     font-family: var(--font-primary);
     background-color: var(--bg-dark);
+    overflow-x: hidden;
 }
 
 /* Shared "code comment" eyebrow treatment (replaces Shadows Into Light everywhere) */

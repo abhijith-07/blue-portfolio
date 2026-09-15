@@ -12,14 +12,12 @@ function Navbar({ homeRef, aboutRef, projectsRef, contactRef }) {
         setMenuView(!menuView);
     }
 
-    // Theme switch
     const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
     function themeSwitch() {
         setDarkTheme(!darkTheme);
     }
 
-    // Bug #2 fix: --bg-white doesn't exist, only --bg-light does.
     useEffect(() => {
         document.querySelector("body").style.backgroundColor = darkTheme ? "var(--bg-dark)" : "var(--bg-light)";
     }, [darkTheme]);
@@ -31,9 +29,6 @@ function Navbar({ homeRef, aboutRef, projectsRef, contactRef }) {
         { id: 'contact', label: 'Contact Me', ref: contactRef },
     ];
 
-    // Bug #3 fix: nav links pointed at routes that don't exist (there's no
-    // router). Track the active section via IntersectionObserver and scroll
-    // to refs instead, same pattern DownArrow already uses.
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -60,18 +55,18 @@ function Navbar({ homeRef, aboutRef, projectsRef, contactRef }) {
 
     return (
         <styles.NavBar
-            darktheme={darkTheme}
+            $darktheme={darkTheme}
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
         >
             <styles.Logo>Abhijith Subash</styles.Logo>
-            <styles.MenuBar onClick={toggleMenu} menuview={menuView} darktheme={darkTheme} aria-label="Open menu">
+            <styles.MenuBar onClick={toggleMenu} $menuview={menuView} $darktheme={darkTheme} aria-label="Open menu">
                 <div></div>
                 <div></div>
                 <div></div>
             </styles.MenuBar>
-            <styles.Options menuview={menuView} darktheme={darkTheme}>
+            <styles.Options $menuview={menuView} $darktheme={darkTheme}>
                 <li className='theme' onClick={themeSwitch}>
                     <button aria-label={darkTheme ? "Switch to light theme" : "Switch to dark theme"} className="icon-btn">
                         {darkTheme ? <Moon size={20} /> : <Sun size={20} />}

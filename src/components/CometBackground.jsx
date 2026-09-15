@@ -60,15 +60,14 @@ export default function CometBackground() {
           angle: Math.random() * Math.PI * 2,
           baseAlpha: rand(0.12, 0.7),
           phase: Math.random() * Math.PI * 2,
-          // slower, smoother speeds for bulb-like glow
-          speed: rand(0.002, 0.006),
+          speed: rand(0.003, 0.018),
           hue: pal.h,
           sat: pal.s,
           light: pal.l,
-          glow: rand(2.2, 4.2),
-          flickerChance: rand(0.0005, 0.002), // very rare spikes
+          glow: rand(2.2, 5.2),
+          flickerChance: rand(0.001, 0.008),
           lastFlicker: 0,
-          flickerStrength: rand(0.3, 0.9)
+          flickerStrength: rand(0.6, 1.4)
         };
       });
     }
@@ -80,51 +79,51 @@ export default function CometBackground() {
       ctx.fillRect(0, 0, state.width, state.height);
 
       for (const star of state.stars) {
-        const t = ((now * 0.001) * star.speed + star.phase) % 1;
-        // smooth bulb-like pulse using cosine (smooth) and smoothstep easing
-        const raw = 0.5 - 0.5 * Math.cos(2 * Math.PI * t); // 0..1 smooth
-        const pulse = raw * raw * (3 - 2 * raw); // smoothstep easing
+        const t = (now * 0.001) * star.speed + star.phase;
+        let pulse = 0.5 + 0.5 * Math.sin(t * Math.PI * 2);
 
-        // occasional rare flicker spikes
         if (Math.random() < star.flickerChance) {
           star.lastFlicker = now;
         }
-        let spike = 0;
-        if (now - star.lastFlicker < 600) {
-          const decay = 1 - (now - star.lastFlicker) / 600;
-          spike = star.flickerStrength * decay;
+        if (now - star.lastFlicker < 500) {
+          const decay = 1 - (now - star.lastFlicker) / 500;
+          pulse += star.flickerStrength * decay;
         }
 
-        const visibleAlpha = Math.max(0.04, Math.min(1, star.baseAlpha * (0.4 + pulse * 0.9 + spike)));
-        const outer = Math.max(1.6, star.r * star.glow);
+        const visibleAlpha = Math.max(0.04, Math.min(1, star.baseAlpha * (0.35 + pulse * 0.9)));
+        const outer = Math.max(1.8, star.r * star.glow);
 
-        // compute rising amount for blur usage (only during fade-in)
-        const rising = Math.max(0, Math.min(1, pulse));
-        const blurAmount = rising > 0.18 ? Math.max(0, rising * 10) : 0;
+        // compute blur only while rising (fade-in); remove while fading out
+        const baseAlpha = Math.min(1, visibleAlpha);
+        const rising = Math.max(0, 1 - Math.abs(baseAlpha - 0.5) / 0.5);
+        const blurAmount = rising > 0.18 ? Math.max(0, rising * 12) : 0;
 
         // prepare gradient for tinted glow/core
         const grad = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, outer);
         grad.addColorStop(0, `rgba(255,255,255,${Math.min(1, visibleAlpha * 1.2)})`);
         grad.addColorStop(0.3, `hsla(${star.hue}, ${star.sat}%, ${star.light}%, ${visibleAlpha * 0.72})`);
-        grad.addColorStop(1, `hsla(${star.hue}, ${star.sat}%, ${star.light}%, ${visibleAlpha * 0.06})`);
+        grad.addColorStop(1, `hsla(${star.hue}, ${star.sat}%, ${star.light}%, ${visibleAlpha * 0.08})`);
 
         ctx.save();
 
         if (star.shape === "circle") {
           // Draw a soft outer halo using the radial gradient but without heavy blur
+          // Outer halo is very low opacity to avoid overpowering content
           ctx.beginPath();
+          // make a copy of gradient with reduced outer opacity by drawing gradient directly
           ctx.fillStyle = grad;
-          ctx.shadowBlur = 0; // keep crisp outer halo drawn via alpha
+          // disable shadow blur for circle stars to keep them crisp
+          ctx.shadowBlur = 0;
           ctx.arc(star.x, star.y, outer, 0, Math.PI * 2);
+          // draw outer halo with low opacity by using globalAlpha temporarily
           ctx.save();
-          // outer halo uses low opacity but pulses smoothly
-          ctx.globalAlpha = Math.max(0.04, visibleAlpha * 0.16);
+          ctx.globalAlpha = Math.max(0.06, visibleAlpha * 0.18);
           ctx.fill();
           ctx.restore();
 
-          // Draw bright inner core — stronger and smooth like a bulb
+          // Draw bright inner core — more opaque while blinking
           ctx.beginPath();
-          const coreAlpha = Math.min(1, visibleAlpha * (0.9 + pulse * 0.6));
+          const coreAlpha = Math.min(1, visibleAlpha * 1.25);
           ctx.fillStyle = `rgba(255,255,255,${coreAlpha})`;
           ctx.arc(star.x, star.y, Math.max(0.5, star.r), 0, Math.PI * 2);
           ctx.fill();

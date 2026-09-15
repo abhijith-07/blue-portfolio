@@ -116,7 +116,7 @@ function About({aboutRef, projectsRef}) {
                 </styles.SkillLists>
             </styles.SkillContainer>
             <styles.ImageContainer>
-                <img src="/images/abhijith_image.jpg" alt="Abhijith Subash" className="avatar" />
+                <img src="/images/abhijith_image.png" alt="Abhijith Subash" className="avatar" />
                 <div className="me">
                     <span className="span-heading ">Me</span>
                     <img src="images/arrows/me.svg" alt="" aria-hidden="true" />
