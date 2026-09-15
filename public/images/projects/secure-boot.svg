@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <rect width="400" height="240" fill="#0B0F14"/>
+  <rect x="1" y="1" width="398" height="238" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="20" y="28" font-family="monospace" font-size="12" fill="#8B99A8">// secure boot — chain of trust</text>
+  <g font-family="monospace" font-size="11" fill="#F5F7FA">
+    <rect x="25" y="50" width="80" height="34" rx="4" fill="none" stroke="#22D3EE" stroke-width="1.5"/>
+    <text x="35" y="71">ROM</text>
+    <rect x="130" y="50" width="80" height="34" rx="4" fill="none" stroke="#22D3EE" stroke-width="1.5"/>
+    <text x="140" y="71">OP-TEE</text>
+    <rect x="235" y="50" width="80" height="34" rx="4" fill="none" stroke="#22D3EE" stroke-width="1.5"/>
+    <text x="248" y="71">TrustZone</text>
+  </g>
+  <line x1="105" y1="67" x2="130" y2="67" stroke="#FFB020" stroke-width="2"/>
+  <line x1="210" y1="67" x2="235" y2="67" stroke="#FFB020" stroke-width="2"/>
+  <text x="330" y="71" font-family="monospace" font-size="16" fill="#22D3EE">✓</text>
+  <text x="25" y="130" font-family="monospace" font-size="10" fill="#8B99A8">each stage verifies the signature</text>
+  <text x="25" y="148" font-family="monospace" font-size="10" fill="#8B99A8">of the next before jumping to it</text>
+</svg>

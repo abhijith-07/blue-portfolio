@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
+import { motion } from 'motion/react';
 
 const styles = {
 
-    NavBar: styled.div`
+    NavBar: styled(motion.div)`
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
-        z-index: 2;
+        top: 0;
+        z-index: 3;
         height: 4rem;
         width: 100vw;
         padding: 0 2em;
@@ -15,8 +17,8 @@ const styles = {
         box-shadow: 0px 0px 10px ${props => props.darktheme ? "var(--primary-transparent)" : "var(--light-gray)"};
         font-family: var(--font-secondary);
         text-transform: uppercase;
-        
-        @media screen and (max-width: 600px) {   
+
+        @media screen and (max-width: 600px) {
             height: 3rem;
             padding: 0.5rem;
         }
@@ -24,15 +26,20 @@ const styles = {
 
     Logo: styled.div`
         color: var(--primary);
-        font-size: 1.75rem;
-    
+        font-family: var(--font-display);
+        letter-spacing: 0.05em;
+        font-size: 1.5rem;
+
         @media screen and (max-width: 600px) {
-            font-size: 1.5rem;
+            font-size: 1.15rem;
         }
     `,
 
-    MenuBar: styled.div`
+    MenuBar: styled.button`
         display: none;
+        background: transparent;
+        border: none;
+        padding: 0;
 
         @media screen and (max-width: 680px) {
             display: ${(props) => (props.menuview ? 'none' : 'block')};
@@ -52,14 +59,37 @@ const styles = {
         color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
 
         li {
+            position: relative;
             padding: 0.5em 0.75em;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
+            cursor: pointer;
         }
-    
+
         li a {
             cursor: pointer;
             text-decoration: none;
             color:  ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
+        }
+
+        .nav-underline {
+            position: absolute;
+            left: 0.75em;
+            right: 0.75em;
+            bottom: 0.15em;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 6px var(--primary-transparent);
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            padding: 0.25rem;
         }
 
         li.close-btn {
@@ -67,14 +97,17 @@ const styles = {
         }
 
         @media screen and (max-width: 680px) {
-            display: ${(props) => (props.menuview ? 'block' : 'none')};
-            position: absolute;
+            display: ${(props) => (props.menuview ? 'flex' : 'none')};
+            flex-direction: column;
+            position: fixed;
             right: 0;
             top: 0;
-            width: 40%;
+            width: 60%;
+            max-width: 280px;
             height: 100vh;
-            z-index: 1;
-            background-color: ${props => props.darktheme ? "var(--bg-light-transparent)" : "var(--bg-dark-transparent)"};
+            z-index: 4;
+            background-color: ${props => props.darktheme ? "var(--bg-dark-elevated)" : "var(--bg-light)"};
+            box-shadow: -4px 0 20px var(--black-transparent);
 
             li {
                 width: 100%;
@@ -84,12 +117,16 @@ const styles = {
             li.theme {
                 display: none;
             }
-            
+
             li a{
-                color:  ${props => props.darktheme ? "var(--font-dark)" : "var(--font-light)"};
+                color:  ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
                 display: block;
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 1.25rem;
                 cursor: pointer;
+            }
+
+            .nav-underline {
+                display: none;
             }
 
             li.close-btn {
@@ -101,12 +138,26 @@ const styles = {
             li.close-btn button {
                 background-color: transparent;
                 border: none;
-                color: ${props => props.darktheme ? "var(--font-dark)" : "var(--font-light)"};
-                font-size: 1.5rem;
+                color: ${props => props.darktheme ? "var(--font-light)" : "var(--font-dark)"};
                 width: 2rem;
                 height: 2rem;
                 cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
             }
+        }
+    `,
+
+    Backdrop: styled(motion.div)`
+        display: none;
+        @media screen and (max-width: 680px) {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: 3;
+            background-color: var(--black-transparent);
         }
     `
 }

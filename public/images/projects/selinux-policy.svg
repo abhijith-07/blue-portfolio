@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <rect width="400" height="240" fill="#0B0F14"/>
+  <rect x="1" y="1" width="398" height="238" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="20" y="28" font-family="monospace" font-size="12" fill="#8B99A8">// audit2allow — denial → policy</text>
+  <rect x="25" y="45" width="350" height="70" rx="4" fill="#131A22" stroke="#FF5470" stroke-width="1.5"/>
+  <text x="40" y="65" font-family="monospace" font-size="10" fill="#FF5470">avc: denied { write } for pid=...</text>
+  <text x="40" y="82" font-family="monospace" font-size="10" fill="#8B99A8">scontext=myapp_t tcontext=var_log_t</text>
+  <text x="40" y="99" font-family="monospace" font-size="10" fill="#8B99A8">tclass=file permissive=0</text>
+  <line x1="200" y1="115" x2="200" y2="135" stroke="#8B99A8" stroke-width="1.5"/>
+  <polygon points="194,130 200,142 206,130" fill="#8B99A8"/>
+  <rect x="25" y="145" width="350" height="65" rx="4" fill="#131A22" stroke="#22D3EE" stroke-width="1.5"/>
+  <text x="40" y="168" font-family="monospace" font-size="10" fill="#22D3EE">type_transition myapp_t var_log_t:</text>
+  <text x="40" y="185" font-family="monospace" font-size="10" fill="#22D3EE">  file myapp_log_t;</text>
+  <text x="40" y="202" font-family="monospace" font-size="10" fill="#F5F7FA">allow myapp_t myapp_log_t:file write;</text>
+</svg>

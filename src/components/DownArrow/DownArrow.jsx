@@ -10,7 +10,7 @@ function DownArrow({refElement}) {
 
   return (
     <ArrowWrapper>
-      <ArrowContainer onClick={handleClick}>&#8595;</ArrowContainer>
+      <ArrowContainer onClick={handleClick} aria-label="Scroll to next section">&#8595;</ArrowContainer>
     </ArrowWrapper>
   );
 }
@@ -42,7 +42,7 @@ const scaleAnimation = keyframes`
 `;
 
 const ArrowContainer = styled.button`
-  color: #fff;
+  color: var(--font-light);
   background-color: transparent;
   border: 2px solid var(--primary);
   font-size: 2rem;

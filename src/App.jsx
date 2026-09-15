@@ -14,8 +14,8 @@ function App() {
   const contactRef = useRef(null);
   return(
     <ThemeContext.Provider value={{darkTheme, setDarkTheme}}>
-      <Navbar />
-      <Home aboutRef={aboutRef}/>
+      <Navbar homeRef={homeRef} aboutRef={aboutRef} projectsRef={projectsRef} contactRef={contactRef} />
+      <Home homeRef={homeRef} aboutRef={aboutRef}/>
       <About aboutRef={aboutRef} projectsRef={projectsRef} />
       <Projects projectsRef={projectsRef} contactRef={contactRef} />
       <Contact contactRef={contactRef} />

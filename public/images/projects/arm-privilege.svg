@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+  <rect width="400" height="240" fill="#0B0F14"/>
+  <rect x="1" y="1" width="398" height="238" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="20" y="28" font-family="monospace" font-size="12" fill="#8B99A8">// arm64 — EL0/EL1 syscall entry</text>
+  <rect x="60" y="55" width="280" height="50" rx="4" fill="#131A22" stroke="#8B99A8" stroke-width="1.5"/>
+  <text x="150" y="85" font-family="monospace" font-size="13" fill="#F5F7FA">EL0 — userspace</text>
+  <line x1="200" y1="105" x2="200" y2="135" stroke="#FFB020" stroke-width="2"/>
+  <polygon points="194,130 200,142 206,130" fill="#FFB020"/>
+  <text x="205" y="122" font-family="monospace" font-size="10" fill="#FFB020">svc #0</text>
+  <rect x="60" y="140" width="280" height="50" rx="4" fill="#131A22" stroke="#22D3EE" stroke-width="1.5"/>
+  <text x="150" y="170" font-family="monospace" font-size="13" fill="#22D3EE">EL1 — kernel</text>
+</svg>

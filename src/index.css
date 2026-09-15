@@ -1,33 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Varela&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 :root {
-    --primary: #006FEE;
-    --primary-dark: #0059be;
-    --primary-transparent: rgba(0, 89, 190, 0.517);
+    /* Primary — electric cyan, reads as "active signal / verified" */
+    --primary: #22D3EE;
+    --primary-dark: #0E9CB3;
+    --primary-transparent: rgba(34, 211, 238, 0.35);
+
+    /* Accents — used sparingly, not as a second primary color */
+    --accent-amber: #FFB020;   /* diagnostic / in-progress / "check engine" */
+    --accent-critical: #FF5470; /* security-critical flags, used rarely */
+
     --black: #030507f9;
     --black-transparent: #03050741;
-    --bg-dark: #141414;
-    --bg-light: #f0f1f3;
-    --bg-dark-transparent: #141414ca;
-    --bg-light-transparent: #f0f1f3dc;
-    --font-light: #fff;
-    --font-dark: #080c13;
-    --light-gray: #a1a1aa; 
-    
-    /* Fonts  */
+
+    --bg-dark: #0B0F14;
+    --bg-dark-elevated: #131A22;
+    --bg-light: #F3F5F7;
+    --bg-dark-transparent: #0B0F14ca;
+    --bg-light-transparent: #F3F5F7dc;
+
+    --font-light: #F5F7FA;
+    --font-dark: #0B0F14;
+    --light-gray: #8B99A8;
+
+    /* Fonts */
     --font-primary: "Roboto", sans-serif;
     --font-secondary: "Varela", sans-serif;
-    --font-decorative: "Shadows Into Light", cursive;
+    --font-display: "Bebas Neue", sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
 }
 
 body {
     font-family: var(--font-primary);
+    background-color: var(--bg-dark);
+}
+
+/* Shared "code comment" eyebrow treatment (replaces Shadows Into Light everywhere) */
+.span-heading {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.span-heading::before {
+    content: "// ";
+    color: var(--light-gray);
+}
+
+/* Visible focus states for keyboard navigation, since outline:none is used
+   on some custom inputs elsewhere — always pair it with this alternative. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Subtle CRT/HUD scanline texture behind the hero, reinforcing the
+   "diagnostic terminal" visual system without competing with the content. */
+.hero-scanlines {
+    position: relative;
+}
+
+.hero-scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        var(--primary-transparent) 3px,
+        transparent 4px
+    );
+    opacity: 0.05;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
