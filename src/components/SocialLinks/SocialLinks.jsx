@@ -1,9 +1,10 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { ThemeContext } from '../../contexts/themeContext';
 
-// Real profile / contact links — swap these for the real destinations.
 const LINKS = [
-  { href: 'https://github.com/abhijith-subash', label: 'GitHub', Icon: Github },
+  { href: 'https://github.com/abhijith-07', label: 'GitHub', Icon: Github },
   { href: 'https://linkedin.com/in/abhijith-subash', label: 'LinkedIn', Icon: Linkedin },
   { href: 'mailto:abhijith.subash@example.com', label: 'Email', Icon: Mail },
 ];
@@ -20,14 +21,15 @@ const Wrapper = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    color: var(--font-light);
+    /* Use the theme-aware icon colour token from index.css */
+    color: var(--icon-color);
     background: transparent;
     transition: color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
   a:hover,
   a:focus-visible {
-    color: var(--primary);
+    color: var(--icon-hover);
     box-shadow: 0 0 10px var(--primary-transparent);
     transform: translateY(-2px);
   }

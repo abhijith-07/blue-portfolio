@@ -9,14 +9,15 @@ const styles = {
         align-items: center;
         position: fixed;
         top: 0;
-        z-index: 3;
+        z-index: 100;
         height: 4rem;
         width: 100vw;
         padding: 0 2em;
-        background-color: var(--bg-dark);
-        box-shadow: 0px 0px 10px ${props => props.$darktheme ? "var(--primary-transparent)" : "var(--light-gray)"};
+        background-color: ${p => p.$darktheme ? 'var(--bg-dark)' : 'var(--bg-light)'};
+        box-shadow: 0 1px 12px ${p => p.$darktheme ? 'var(--primary-transparent)' : 'rgba(0,0,0,0.10)'};
         font-family: var(--font-secondary);
         text-transform: uppercase;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
         @media screen and (max-width: 600px) {
             height: 3rem;
@@ -25,10 +26,10 @@ const styles = {
     `,
 
     Logo: styled.div`
-        color: var(--primary);
+        color: ${p => p.$darktheme ? 'var(--primary)' : 'var(--primary-dark)'};
         font-family: var(--font-display);
-        letter-spacing: 0.05em;
         font-size: 1.5rem;
+        letter-spacing: 0.05em;
 
         @media screen and (max-width: 600px) {
             font-size: 1.15rem;
@@ -40,15 +41,16 @@ const styles = {
         background: transparent;
         border: none;
         padding: 0;
+        cursor: pointer;
 
         @media screen and (max-width: 680px) {
-            display: ${(props) => (props.$menuview ? 'none' : 'block')};
-            cursor: pointer;
+            display: ${p => p.$menuview ? 'none' : 'block'};
             div {
                 width: 20px;
                 height: 3px;
                 margin: 5px;
-                background-color: ${props => props.$darktheme ? "var(--bg-light)" : "var(--bg-dark)"};
+                background-color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
+                border-radius: 2px;
             }
         }
     `,
@@ -56,7 +58,8 @@ const styles = {
     Options: styled.ul`
         display: flex;
         list-style: none;
-        color: ${props => props.$darktheme ? "var(--font-light)" : "var(--font-dark)"};
+        color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
+        align-items: center;
 
         li {
             position: relative;
@@ -68,7 +71,12 @@ const styles = {
         li a {
             cursor: pointer;
             text-decoration: none;
-            color:  ${props => props.$darktheme ? "var(--font-light)" : "var(--font-dark)"};
+            color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
+            transition: color 0.2s ease;
+        }
+
+        li a:hover {
+            color: var(--primary);
         }
 
         .nav-underline {
@@ -87,17 +95,15 @@ const styles = {
             justify-content: center;
             background: transparent;
             border: none;
-            color: inherit;
+            color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
             cursor: pointer;
             padding: 0.25rem;
         }
 
-        li.close-btn {
-            display: none;
-        }
+        li.close-btn { display: none; }
 
         @media screen and (max-width: 680px) {
-            display: ${(props) => (props.$menuview ? 'flex' : 'none')};
+            display: ${p => p.$menuview ? 'flex' : 'none'};
             flex-direction: column;
             position: fixed;
             right: 0;
@@ -106,28 +112,19 @@ const styles = {
             max-width: 280px;
             height: 100vh;
             z-index: 4;
-            background-color: ${props => props.$darktheme ? "var(--bg-dark-elevated)" : "var(--bg-light)"};
-            box-shadow: -4px 0 20px var(--black-transparent);
+            background-color: ${p => p.$darktheme ? 'var(--bg-dark-elevated)' : 'var(--bg-light)'};
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
 
-            li {
-                width: 100%;
-                padding: 0;
-            }
+            li { width: 100%; padding: 0; }
+            li.theme { display: none; }
 
-            li.theme {
-                display: none;
-            }
-
-            li a{
-                color:  ${props => props.$darktheme ? "var(--font-light)" : "var(--font-dark)"};
+            li a {
+                color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
                 display: block;
                 padding: 0.75rem 1.25rem;
-                cursor: pointer;
             }
 
-            .nav-underline {
-                display: none;
-            }
+            .nav-underline { display: none; }
 
             li.close-btn {
                 display: block;
@@ -136,9 +133,9 @@ const styles = {
             }
 
             li.close-btn button {
-                background-color: transparent;
+                background: transparent;
                 border: none;
-                color: ${props => props.$darktheme ? "var(--font-light)" : "var(--font-dark)"};
+                color: ${p => p.$darktheme ? 'var(--font-light)' : 'var(--font-dark)'};
                 width: 2rem;
                 height: 2rem;
                 cursor: pointer;
@@ -152,6 +149,7 @@ const styles = {
 
     Backdrop: styled(motion.div)`
         display: none;
+
         @media screen and (max-width: 680px) {
             display: block;
             position: fixed;

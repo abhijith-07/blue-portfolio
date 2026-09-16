@@ -6,28 +6,45 @@
     box-sizing: border-box;
 }
 
+/* ─── Design tokens (dark mode = default) ──────────────────── */
 :root {
-    /* Primary — electric cyan, reads as "active signal / verified" */
+    /* Brand cyan */
     --primary: #22D3EE;
-    --primary-dark: #0E9CB3;
-    --primary-transparent: rgba(34, 211, 238, 0.35);
+    --primary-dark: #0E7BAB;
+    --primary-transparent: rgba(34, 211, 238, 0.25);
 
-    /* Accents — used sparingly, not as a second primary color */
-    --accent-amber: #FFB020;   /* diagnostic / in-progress / "check engine" */
-    --accent-critical: #FF5470; /* security-critical flags, used rarely */
+    /* Accents */
+    --accent-amber: #FFB020;
+    --accent-critical: #FF5470;
 
-    --black: #030507f9;
-    --black-transparent: #03050741;
-
+    /* Surfaces – dark */
     --bg-dark: #0B0F14;
     --bg-dark-elevated: #131A22;
-    --bg-light: #F3F5F7;
-    --bg-dark-transparent: #0B0F14ca;
-    --bg-light-transparent: #F3F5F7dc;
+    --bg-dark-card: #192130;
+    --bg-dark-transparent: rgba(11,15,20,0.79);
 
-    --font-light: #F5F7FA;
-    --font-dark: #0B0F14;
-    --light-gray: #8B99A8;
+    /* Surfaces – light (overridden in [data-theme=light]) */
+    --bg-light: #F0F4F8;
+    --bg-light-elevated: #FFFFFF;
+    --bg-light-card: #FFFFFF;
+    --bg-light-transparent: rgba(240,244,248,0.85);
+
+    /* Text */
+    --font-light: #F0F4F8;          /* headings / body on dark */
+    --font-light-secondary: #B8C4CF;/* secondary text on dark */
+    --font-dark: #1A2332;           /* headings on light */
+    --font-dark-secondary: #3D5166; /* body copy on light */
+    --font-dark-muted: #5C7083;     /* muted / placeholder on light */
+
+    /* Shared alias used by components (reassigned per theme below) */
+    --surface: var(--bg-dark-elevated);
+    --on-surface: var(--font-light);
+    --on-surface-secondary: var(--font-light-secondary);
+    --light-gray: #8B99A8;          /* dark-mode secondary text */
+
+    /* Icon colour */
+    --icon-color: var(--font-light);
+    --icon-hover: var(--primary);
 
     /* Fonts */
     --font-primary: "Roboto", sans-serif;
@@ -35,20 +52,52 @@
     --font-display: "Bebas Neue", sans-serif;
     --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
-    /* Transition system */
-    --transition-duration: 200ms; /* fallback */
-    --transition-duration-ui: 220ms; /* UI controls (buttons, links) */
-    --transition-duration-text: 140ms; /* text and typographic changes */
+    /* Black overlays */
+    --black: #030507f9;
+    --black-transparent: rgba(3,5,7,0.25);
+
+    /* Transitions */
+    --transition-duration-ui: 220ms;
+    --transition-duration-text: 140ms;
     --transition-ease: cubic-bezier(.2,.9,.2,1);
 }
 
+/* ─── Light-mode overrides ──────────────────────────────────── */
+/* Applied when Navbar sets body[data-theme="light"]             */
+body[data-theme="light"] {
+    /* Surfaces */
+    --surface: var(--bg-light-card);
+    --bg-dark-elevated: var(--bg-light-card);   /* cards used by Projects, Contact, etc. */
+    --bg-dark-card: #EBF1F7;                    /* subtle tinted card */
+
+    /* Text */
+    --on-surface: var(--font-dark);
+    --on-surface-secondary: var(--font-dark-secondary);
+    --light-gray: var(--font-dark-muted);       /* muted text now dark-on-light */
+    --font-light: var(--font-dark);             /* components that hard-code --font-light */
+
+    /* Icons */
+    --icon-color: var(--font-dark);
+
+    /* Primary stays cyan but we use the darker shade for text on white */
+    --primary-transparent: rgba(14,123,171,0.15);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
 body {
     font-family: var(--font-primary);
     background-color: var(--bg-dark);
+    color: var(--on-surface);
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Shared "code comment" eyebrow treatment (replaces Shadows Into Light everywhere) */
+body[data-theme="light"] {
+    background-color: var(--bg-light);
+    color: var(--font-dark);
+}
+
+/* ─── Code-comment eyebrow ──────────────────────────────────── */
 .span-heading {
     font-family: var(--font-mono);
     font-size: 0.95rem;
@@ -62,8 +111,15 @@ body {
     color: var(--light-gray);
 }
 
-/* Visible focus states for keyboard navigation, since outline:none is used
-   on some custom inputs elsewhere — always pair it with this alternative. */
+body[data-theme="light"] .span-heading {
+    color: var(--primary-dark);
+}
+
+body[data-theme="light"] .span-heading::before {
+    color: var(--font-dark-muted);
+}
+
+/* ─── Focus states ──────────────────────────────────────────── */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -74,12 +130,8 @@ textarea:focus-visible,
     border-radius: 2px;
 }
 
-/* Subtle CRT/HUD scanline texture behind the hero, reinforcing the
-   "diagnostic terminal" visual system without competing with the content. */
-.hero-scanlines {
-    position: relative;
-}
-
+/* ─── Hero scanlines (dark only) ───────────────────────────── */
+.hero-scanlines { position: relative; }
 .hero-scanlines::before {
     content: "";
     position: absolute;
@@ -93,9 +145,10 @@ textarea:focus-visible,
         var(--primary-transparent) 3px,
         transparent 4px
     );
-    opacity: 0.05;
+    opacity: 0.06;
 }
 
+/* ─── Reduced motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.001ms !important;
@@ -105,37 +158,19 @@ textarea:focus-visible,
     }
 }
 
-/* Ensure main site content sits above the animated canvas */
-.site-content {
-    position: relative;
-    z-index: 1;
-}
-
-/* Global smooth hover transitions for interactive elements and text
-   Applied broadly so components and styled-components inherit the timing
-   and easing. Respects prefers-reduced-motion above. */
-/* UI controls: buttons, links, inputs — slightly longer, tactile feeling */
-:where(a, button, [role="button"], .btn, .nav-item) {
+/* ─── Global smooth transitions ─────────────────────────────── */
+:where(a, button, [role="button"]) {
     transition-property: background-color, color, border-color, box-shadow, transform, opacity, fill, stroke;
     transition-duration: var(--transition-duration-ui);
     transition-timing-function: var(--transition-ease);
 }
-
-/* Text and typographic elements: faster, snappier */
-:where(h1, h2, h3, h4, h5, h6, p, .span-heading, .link) {
-    transition-property: color, opacity, text-shadow, letter-spacing;
+:where(h1, h2, h3, h4, h5, h6, p, .span-heading) {
+    transition-property: color, opacity;
     transition-duration: var(--transition-duration-text);
     transition-timing-function: var(--transition-ease);
 }
-
-/* Form controls and focusable inputs follow UI timing */
 :where(input, textarea, select) {
     transition-property: box-shadow, border-color, background-color, color;
     transition-duration: var(--transition-duration-ui);
     transition-timing-function: var(--transition-ease);
-}
-
-/* Small additional smoothing hint for interactive transforms */
-:where(a:hover, button:hover, [role="button"]:hover, .btn:hover) {
-    will-change: transform, opacity;
 }

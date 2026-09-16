@@ -251,7 +251,8 @@ export default function Projects({ projectsRef, contactRef }) {
             /* Car faces LEFT (movingRight=false). Exhaust trails RIGHT of car */
             setMovingRight(false);
             addPuff(96); addPuff(94);
-            try { playEngineStart(getCtx(audioCtxRef)); } catch (_) {}
+            /* No AudioContext here — browsers block it before a user gesture.
+               Sound fires on the first arrow click instead (zero console warnings). */
 
             const t2 = setTimeout(() => {
                 setActiveProject(0); // animate to left end
